@@ -3,7 +3,7 @@
     {
       "name": "half-width-punctuation-next-to-hanzi",
       "languages": ["markdown", "textile"],
-      "pattern": "(?<=^|[\\u4E00-\\u9FFF])[!'\":;,.?](?=$|[\\u4E00-\\u9FFF])",
+      "pattern": "(?<=^|[“”‘’\\u4E00-\\u9FFF])[!'\":;,.?](?=$|[“”‘’\\u4E00-\\u9FFF])",
       "message": "Half-width punctuation should not be placed next to Chinese characters; use full-width punctuation instead",
       "severity": "Error"
     },
@@ -27,6 +27,13 @@
       "pattern": "(?<=[:：)]\\s*)[“‘][^“”‘’]{2,}[\\u4E00-\\u9FFF][”’]|^[\\u4E00-\\u9FFF！“‘].*[！“”‘’：；，。？].*[\\u4E00-\\u9FFF]$",
       "message": "Missing full stop after Chinese characters",
       "severity": "Error"
+    },
+    {
+      "name": "space-next-to-full-width-pubctuation",
+      "languages": ["markdown", "textile"],
+      "pattern": "[ ](?=[！“‘“”‘’；，。？])",
+      "message": "Redundant space next to full-width punctuation",
+      "severity": "Warning"
     }
   ]
 }

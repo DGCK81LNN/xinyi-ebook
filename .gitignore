@@ -1,2 +1,4 @@
-/*.html
-!/_*.html
+*.html
+!_*.html
+*.epub
+*.zip
