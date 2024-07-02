@@ -53,26 +53,50 @@ local add_avatars = {
       if sub_el.t == "Str" then
         local start = 1
         for j = 1, pandoc.text.len(sub_el.text) do
-          if pandoc.text.sub(sub_el.text, j, j) == ")" then
+          local cur = pandoc.text.sub(sub_el.text, j, j)
+          if cur == ")" or cur == "]" then
             local k
+            local empty_alt = false
             if j - 2 >= start
             and pandoc.text.sub(sub_el.text, j - 2, j - 2) == "("
             and avatar_data[pandoc.text.sub(sub_el.text, j - 1, j - 1)]
+            and cur == ")"
             then
               k = j - 2
             elseif j - 3 >= start
             and pandoc.text.sub(sub_el.text, j - 3, j - 3) == "("
             and avatar_data[pandoc.text.sub(sub_el.text, j - 2, j - 1)]
+            and cur == ")"
             then
               k = j - 3
+            elseif j - 2 >= start
+            and pandoc.text.sub(sub_el.text, j - 2, j - 2) == "["
+            and avatar_data[pandoc.text.sub(sub_el.text, j - 1, j - 1)]
+            and cur == "]"
+            then
+              k = j - 2
+              empty_alt = true
+            elseif j - 3 >= start
+            and pandoc.text.sub(sub_el.text, j - 3, j - 3) == "["
+            and avatar_data[pandoc.text.sub(sub_el.text, j - 2, j - 1)]
+            and cur == "]"
+            then
+              k = j - 3
+              empty_alt = true
             end
             if k then
               data = avatar_data[pandoc.text.sub(sub_el.text, k + 1, j - 1)]
               if k - 1 >= start then
                 new_content[#new_content + 1] = pandoc.Str(pandoc.text.sub(sub_el.text, start, k - 1))
               end
+              local alt_text
+              if empty_alt then
+                alt_text = pandoc.Str("")
+              else
+                alt_text = pandoc.text.sub(sub_el.text, k, j)
+              end
               new_content[#new_content + 1] = pandoc.Image(
-                pandoc.text.sub(sub_el.text, k, j),
+                alt_text,
                 "assets/avatars/" .. data.filename,
                 data.title,
                 { class = "avatar" }

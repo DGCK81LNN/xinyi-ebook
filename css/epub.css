@@ -237,12 +237,3 @@ q {
     white-space: pre-wrap !important;
   }
 }
-
-/* End of default-stylesheet-derived part */
-
-.avatar {
-  width: 1em;
-  height: 1em;
-  border-radius: 0.2em;
-  vertical-align: middle;
-}
