@@ -54,7 +54,7 @@ local add_avatars = {
         local start = 1
         for j = 1, pandoc.text.len(sub_el.text) do
           local cur = pandoc.text.sub(sub_el.text, j, j)
-          if cur == ")" or cur == "]" then
+          if cur == ")" or cur == "}" then
             local k
             local empty_alt = false
             if j - 2 >= start
@@ -70,16 +70,16 @@ local add_avatars = {
             then
               k = j - 3
             elseif j - 2 >= start
-            and pandoc.text.sub(sub_el.text, j - 2, j - 2) == "["
+            and pandoc.text.sub(sub_el.text, j - 2, j - 2) == "{"
             and avatar_data[pandoc.text.sub(sub_el.text, j - 1, j - 1)]
-            and cur == "]"
+            and cur == "}"
             then
               k = j - 2
               empty_alt = true
             elseif j - 3 >= start
-            and pandoc.text.sub(sub_el.text, j - 3, j - 3) == "["
+            and pandoc.text.sub(sub_el.text, j - 3, j - 3) == "{"
             and avatar_data[pandoc.text.sub(sub_el.text, j - 2, j - 1)]
-            and cur == "]"
+            and cur == "}"
             then
               k = j - 3
               empty_alt = true
