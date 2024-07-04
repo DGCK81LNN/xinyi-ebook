@@ -48,6 +48,34 @@
       "pattern": "(?<=[“”‘’\\u4E00-\\u9FFF])(?:—(?!—)|—{3,})|(?:(?<!—)—|—{3,})(?=[“”‘’\\u4E00-\\u9FFF])",
       "message": "Incorrect dash",
       "severity": "Error"
+    },
+    {
+      "name": "incorrect-quotation-mark",
+      "languages": ["markdown", "textile"],
+      "pattern": "(?<=“[^”]*?)“|(?<=^[^“]*?)”|“[^”]*$|“”|(?<=(?:^|”)[^“]*?)‘|(?<=‘[^’]*?)‘|(?<=(?:^|“)[^‘]*?)’|‘[^’]*?(?=$|”)|‘’",
+      "message": "Incorrect quotation mark",
+      "severity": "Error"
+    },
+    {
+      "name": "invalid-initial-punctuation",
+      "languages": ["markdown", "textile"],
+      "pattern": "(?<=^|[“‘])[！；，。？]",
+      "message": "Invalid initial punctuation",
+      "severity": "Error"
+    },
+    {
+      "name": "nbsp",
+      "languages": ["markdown", "textile"],
+      "pattern": "\\xA0",
+      "message": "Unexpected non-breaking space",
+      "severity": "Error"
+    },
+    {
+      "name": "quotation-without-speaker",
+      "languages": ["markdown", "textile"],
+      "pattern": "^“[^”]+”$",
+      "message": "Quotation without speaker",
+      "severity": "Hint"
     }
   ]
 }
