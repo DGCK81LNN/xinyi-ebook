@@ -5,7 +5,8 @@ Usage: $(basename "$0") [ext]
 ext=$1
 if [ ! "$ext" ]; then ext=epub; fi
 
-pandoc chapters/* -s --metadata-file=meta.yml --lua-filter filters.lua \
+pandoc chapters/*.textile --from 'textile'-smart -s --metadata-file=meta.yml \
+  --lua-filter filters.lua \
   --split-level=2 --toc --toc-depth=2 --wrap=preserve \
   -c "css/$ext.css" -c css/common.css \
   -o 昕仪系列.$ext

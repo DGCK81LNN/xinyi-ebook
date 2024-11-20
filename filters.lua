@@ -60,6 +60,7 @@ local add_avatars = {
           if cur == ")" or cur == "]" or cur == "}" then
             local k
             local empty_alt = false
+            local no_title = false
             if j - 2 >= start
             and pandoc.text.sub(sub_el.text, j - 2, j - 2) == "("
             and avatar_data[pandoc.text.sub(sub_el.text, j - 1, j - 1)]
@@ -79,6 +80,7 @@ local add_avatars = {
             then
               k = j - 2
               empty_alt = true
+              -- no_title = true
             elseif j - 3 >= start
             and pandoc.text.sub(sub_el.text, j - 3, j - 3) == "["
             and avatar_data[pandoc.text.sub(sub_el.text, j - 2, j - 1)]
@@ -86,6 +88,7 @@ local add_avatars = {
             then
               k = j - 3
               empty_alt = true
+              -- no_title = true
             elseif j - 2 >= start
             and pandoc.text.sub(sub_el.text, j - 2, j - 2) == "{"
             and avatar_data[pandoc.text.sub(sub_el.text, j - 1, j - 1)]
@@ -115,7 +118,7 @@ local add_avatars = {
               new_content[#new_content + 1] = pandoc.Image(
                 alt_text,
                 "assets/avatars/" .. data.filename,
-                data.title,
+                not no_title and data.title or "",
                 { class = "avatar" }
               )
               start = j + 1

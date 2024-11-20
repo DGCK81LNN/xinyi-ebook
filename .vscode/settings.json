@@ -2,77 +2,77 @@
   "regex-diag.rules": [
     {
       "name": "half-width-punctuation-next-to-hanzi",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "(?<=^|[“”‘’\\u4E00-\\u9FFF])[!'\":;,.?\\-~]+(?=[“”‘’\\u4E00-\\u9FFF])|(?<=[“”‘’\\u4E00-\\u9FFF])[!'\":;,.?\\-~]+$",
       "message": "Half-width punctuation should not be placed next to Chinese characters; use full-width punctuation instead",
       "severity": "Error"
     },
     {
       "name": "western-char-next-to-hanzi",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "[0-9A-Za-z\\u0390-\\u03FF]+(?=[\\u4E00-\\u9FFF])|(?<=[\\u4E00-\\u9FFF])[0-9A-Za-z\\u0390-\\u03FF]+",
       "message": "Western characters should not be placed next to Chinese characters; add a space in between",
       "severity": "Warning"
     },
     {
       "name": "repeated-spaces",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "[ \\xA0]{2,}",
       "message": "Repeated spaces",
       "severity": "Error"
     },
     {
       "name": "missing-full-stop",
-      "languages": ["markdown", "textile"],
-      "pattern": "(?<=(?:^|[:：)])\\s*)[“‘][^“”‘’]{2,}[\\u4E00-\\u9FFF][”’]|^[\\u4E00-\\u9FFF！“‘].*[！“”‘’：；，。？].*[\\u4E00-\\u9FFF]$",
+      "languages": ["textile"],
+      "pattern": "(?<=(?:^|[:：)])\\s*)[“‘][^“”‘’]{2,}[\\u4E00-\\u9FFF][”’](?![“‘])|^[\\u4E00-\\u9FFF！“‘].*[！“”‘’：；，。？].*[\\u4E00-\\u9FFF]$",
       "message": "Missing full stop",
       "severity": "Error"
     },
     {
       "name": "space-next-to-full-width-punctuation",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "[ ](?=[！“‘“”‘’；，。？])",
       "message": "Redundant space next to full-width punctuation",
       "severity": "Warning"
     },
     {
       "name": "incorrect-ellipsis",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "(?<=[“”‘’\\u4E00-\\u9FFF])(?:…(?!…)|…{3,})|(?:(?<!…)…|…{3,})(?=[“”‘’\\u4E00-\\u9FFF])",
       "message": "Incorrect ellipsis",
       "severity": "Error"
     },
     {
       "name": "incorrect-dash",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "(?<=[“”‘’\\u4E00-\\u9FFF])(?:—(?!—)|—{3,})|(?:(?<!—)—|—{3,})(?=[“”‘’\\u4E00-\\u9FFF])",
       "message": "Incorrect dash",
       "severity": "Error"
     },
     {
       "name": "incorrect-quotation-mark",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "(?<=“[^”]*?)“|(?<=^[^“]*?)”|“[^”]*$|“”|(?<=(?:^|”)[^“]*?)‘|(?<=‘[^’]*?)‘|(?<=(?:^|“)[^‘]*?)’|‘[^’]*?(?=$|”)|‘’",
       "message": "Incorrect quotation mark",
       "severity": "Error"
     },
     {
       "name": "invalid-initial-punctuation",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "(?<=^|[“‘])[！；，。？]",
       "message": "Invalid initial punctuation",
       "severity": "Error"
     },
     {
       "name": "nbsp",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "\\xA0",
       "message": "Unexpected non-breaking space",
       "severity": "Error"
     },
     {
       "name": "quotation-without-speaker",
-      "languages": ["markdown", "textile"],
+      "languages": ["textile"],
       "pattern": "^“[^”]+”$",
       "message": "Quotation without speaker",
       "severity": "Hint"
